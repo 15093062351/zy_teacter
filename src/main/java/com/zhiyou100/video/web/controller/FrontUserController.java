@@ -66,11 +66,10 @@ public class FrontUserController {
 		FrontResult result = new FrontResult();
 		u.setPassword(MD5Utils.getMD5(u.getPassword()));
 		User user = fus.logintUser(u);
+		result.setSuccess(user != null);
 		if(user == null){
-			result.setSuccess(false);
 			result.setMessage("用户名密码不正确");
 		}else{
-			result.setSuccess(true);
 			session.setAttribute("_front_user", user);
 		}
 		return result;
